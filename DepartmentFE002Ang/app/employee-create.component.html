@@ -1,0 +1,20 @@
+<h1>{{title}}</h1>
+
+<div class="firstName">
+    First name:<input [(ngModel)]="employee.FirstName" placeholder="FirstName">
+</div>
+<div class="lastName">
+    Last name:<input [(ngModel)]="employee.LastName" placeholder="LastName">
+</div>
+<div class="dateOfBirth">
+    Date of birth: <input type="date" [(ngModel)]="employee.DateOfBirth" placeholder="DateOfBirth">
+</div>
+<div class="phone">
+    Phone: <input [(ngModel)]="employee.Phone" placeholder="Phone">
+</div>
+
+<button (click)="addEmployee(employee);">
+  Add
+</button>
+
+<button (click)="goBack()">Cancel</button>
