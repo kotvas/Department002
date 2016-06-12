@@ -3,17 +3,17 @@ import { HTTP_PROVIDERS } from '@angular/http';
 import { Router } from '@angular/router-deprecated';
 
 // Add the RxJS Observable operators we need in this app.
-import './rxjs-operators';
+import '../../rxjs-operators';
 
-import { Employee } from './entities/employee';
-import { EmployeesService } from './services/employees.service';
+import { Employee } from '../../entities/employee';
+import { EmployeesService } from '../../services/employees.service';
 
-import { HelpersComponent} from './shared/helpers.component';
+import { HelpersComponent} from '../../shared/helpers.component';
 
 @Component({
   selector: 'my-app',
-  templateUrl: 'app/employees.component.html',
-  styleUrls:  ['app/employees.component.css'],
+  templateUrl: 'app/components/employees/employees.component.html',
+  styleUrls:  ['app/components/employees/employees.component.css'],
   providers: [
     EmployeesService, HTTP_PROVIDERS, HelpersComponent
   ]

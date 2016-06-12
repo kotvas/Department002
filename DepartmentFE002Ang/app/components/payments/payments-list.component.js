@@ -10,19 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-var router_deprecated_1 = require('@angular/router-deprecated');
+//import { Router } from '@angular/router-deprecated';
 // Add the RxJS Observable operators we need in this app.
-require('./rxjs-operators');
-var payments_service_1 = require('./services/payments.service');
-var helpers_component_1 = require('./shared/helpers.component');
-var PaymentsComponent = (function () {
-    function PaymentsComponent(router, paymentService, helpersComponent) {
-        this.router = router;
+require('../../rxjs-operators');
+var payments_service_1 = require('../../services/payments.service');
+var helpers_component_1 = require('../../shared/helpers.component');
+var PaymentsListComponent = (function () {
+    function PaymentsListComponent(
+        //private router: Router,
+        paymentService, helpersComponent) {
         this.paymentService = paymentService;
         this.helpersComponent = helpersComponent;
-        this.title = 'List of Payments';
     }
-    PaymentsComponent.prototype.getPayments = function () {
+    PaymentsListComponent.prototype.getPayments = function () {
         var _this = this;
         this.paymentService.getPayments()
             .subscribe(function (payments) { return _this.payments = payments; }, function (error) { return _this.errorMessage = error; });
@@ -41,27 +41,21 @@ var PaymentsComponent = (function () {
     //   //console.log(newDate);
     //   return newDate;
     // }
-    PaymentsComponent.prototype.ngOnInit = function () {
+    PaymentsListComponent.prototype.ngOnInit = function () {
         this.getPayments();
     };
-    // gotoEmployeeDetail(employee: Employee) {
-    //     this.router.navigate(['EmployeeDetail', { id: employee.Id }]);
-    // }
-    PaymentsComponent.prototype.gotoPaymentCreate = function () {
-        this.router.navigate(['PaymentCreate']);
-    };
-    PaymentsComponent = __decorate([
+    PaymentsListComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            templateUrl: 'app/payments.component.html',
-            styleUrls: ['app/payments.component.css'],
+            selector: 'payments-list',
+            templateUrl: 'app/components/payments/payments-list.component.html',
+            styleUrls: ['app/components/payments/payments-list.component.css'],
             providers: [
                 payments_service_1.PaymentsService, http_1.HTTP_PROVIDERS, helpers_component_1.HelpersComponent
             ]
         }), 
-        __metadata('design:paramtypes', [router_deprecated_1.Router, payments_service_1.PaymentsService, helpers_component_1.HelpersComponent])
-    ], PaymentsComponent);
-    return PaymentsComponent;
+        __metadata('design:paramtypes', [payments_service_1.PaymentsService, helpers_component_1.HelpersComponent])
+    ], PaymentsListComponent);
+    return PaymentsListComponent;
 }());
-exports.PaymentsComponent = PaymentsComponent;
-//# sourceMappingURL=payments.component.js.map
+exports.PaymentsListComponent = PaymentsListComponent;
+//# sourceMappingURL=payments-list.component.js.map

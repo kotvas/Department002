@@ -11,11 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var employees_service_1 = require('./services/employees.service');
-var employees_component_1 = require('./employees.component');
-var employee_detail_component_1 = require('./employee-detail.component');
-var employee_create_component_1 = require('./employee-create.component');
-var payments_component_1 = require('./payments.component');
-var payment_create_component_1 = require('./payment-create.component');
+var employees_component_1 = require('./components/employees/employees.component');
+var employee_detail_component_1 = require('./components/employees/employee-detail.component');
+var employee_create_component_1 = require('./components/employees/employee-create.component');
+var payments_component_1 = require('./components/payments/payments.component');
+var payment_create_component_1 = require('./components/payments/payment-create.component');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Department';

@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
-import { Router } from '@angular/router-deprecated';
+//import { Router } from '@angular/router-deprecated';
 
 // Add the RxJS Observable operators we need in this app.
-import './rxjs-operators';
+import '../../rxjs-operators';
 
-import { Payment } from './entities/payment';
-import { PaymentsService } from './services/payments.service';
+import { Payment } from '../../entities/payment';
+import { PaymentsService } from '../../services/payments.service';
 
-import { HelpersComponent} from './shared/helpers.component';
+import { HelpersComponent} from '../../shared/helpers.component';
 
 @Component({
-  selector: 'my-app',
-  templateUrl: 'app/payments.component.html',
-  styleUrls:  ['app/payments.component.css'],
+  selector: 'payments-list',
+  templateUrl: 'app/components/payments/payments-list.component.html',
+  styleUrls:  ['app/components/payments/payments-list.component.css'],
   providers: [
     PaymentsService, HTTP_PROVIDERS, HelpersComponent
   ]
 })
 
-export class PaymentsComponent implements OnInit {
-    title = 'List of Payments';
+export class PaymentsListComponent implements OnInit {
+    //title = 'List of Payments';
         
     errorMessage: string;
     payments: Payment[];
@@ -28,7 +28,7 @@ export class PaymentsComponent implements OnInit {
     paymentsCount: number;
     
     constructor(
-        private router: Router,
+        //private router: Router,
         private paymentService: PaymentsService,
         private helpersComponent: HelpersComponent) {   
     }
@@ -67,7 +67,7 @@ export class PaymentsComponent implements OnInit {
     //     this.router.navigate(['EmployeeDetail', { id: employee.Id }]);
     // }
     
-    gotoPaymentCreate() {
-        this.router.navigate(['PaymentCreate'])
-    }
+    // gotoPaymentCreate() {
+    //     this.router.navigate(['PaymentCreate'])
+    // }
 }

@@ -12,11 +12,11 @@ var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var http_1 = require('@angular/http');
 // Add the RxJS Observable operators we need in this app.
-require('./rxjs-operators');
-var payment_1 = require('./entities/payment');
-var payments_service_1 = require('./services/payments.service');
-var employee_1 = require('./entities/employee');
-var employees_service_1 = require('./services/employees.service');
+require('../../rxjs-operators');
+var payment_1 = require('../../entities/payment');
+var payments_service_1 = require('../../services/payments.service');
+var employee_1 = require('../../entities/employee');
+var employees_service_1 = require('../../services/employees.service');
 var PaymentCreateComponent = (function () {
     function PaymentCreateComponent(paymentsService, employeesService, routeParams) {
         this.paymentsService = paymentsService;
@@ -79,8 +79,8 @@ var PaymentCreateComponent = (function () {
     PaymentCreateComponent = __decorate([
         core_1.Component({
             //selector: 'employee-detail',
-            templateUrl: 'app/payment-create.component.html',
-            styleUrls: ['app/payment-create.component.css'],
+            templateUrl: 'app/components/payments/payment-create.component.html',
+            styleUrls: ['app/components/payments/payment-create.component.css'],
             providers: [
                 payments_service_1.PaymentsService, employees_service_1.EmployeesService, http_1.HTTP_PROVIDERS
             ]

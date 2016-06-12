@@ -3,18 +3,18 @@ import { RouteParams } from '@angular/router-deprecated';
 import { HTTP_PROVIDERS } from '@angular/http';
 
 // Add the RxJS Observable operators we need in this app.
-import './rxjs-operators';
+import '../../rxjs-operators';
 
-import { Payment } from './entities/payment';
-import { PaymentsService } from './services/payments.service';
+import { Payment } from '../../entities/payment';
+import { PaymentsService } from '../../services/payments.service';
 
-import { Employee } from './entities/employee';
-import { EmployeesService } from './services/employees.service';
+import { Employee } from '../../entities/employee';
+import { EmployeesService } from '../../services/employees.service';
 
 @Component({
   //selector: 'employee-detail',
-  templateUrl: 'app/payment-create.component.html',
-  styleUrls: ['app/payment-create.component.css'],
+  templateUrl: 'app/components/payments/payment-create.component.html',
+  styleUrls: ['app/components/payments/payment-create.component.css'],
   providers: [
     PaymentsService, EmployeesService, HTTP_PROVIDERS
   ]

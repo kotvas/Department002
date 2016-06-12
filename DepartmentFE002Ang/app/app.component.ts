@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
-import { EmployeesService }     from './services/employees.service';
-import { EmployeesComponent } from './employees.component';
-import { EmployeeDetailComponent } from './employee-detail.component';
-import { EmployeeCreateComponent } from './employee-create.component';
+import { EmployeesService } from './services/employees.service';
+import { EmployeesComponent } from './components/employees/employees.component';
+import { EmployeeDetailComponent } from './components/employees/employee-detail.component';
+import { EmployeeCreateComponent } from './components/employees/employee-create.component';
 
 
 import { PaymentsService }     from './services/payments.service';
-import { PaymentsComponent } from './payments.component';
-import { PaymentCreateComponent } from './payment-create.component';
+import { PaymentsComponent } from './components/payments/payments.component';
+import { PaymentCreateComponent } from './components/payments/payment-create.component';
 
 @Component({
   selector: 'my-app',

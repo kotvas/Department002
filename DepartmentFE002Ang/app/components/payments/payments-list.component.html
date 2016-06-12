@@ -1,9 +1,3 @@
-<h1>{{title}}</h1>
-
-<button (click)="gotoPaymentCreate()">
-  Add New Payment
-</button>
-
 <div class="panel-group" id="accordion">
   <div class="panel panel-default" *ngFor="let payment of payments; let idx = index">
       <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{idx}}" style="text-decoration: none">

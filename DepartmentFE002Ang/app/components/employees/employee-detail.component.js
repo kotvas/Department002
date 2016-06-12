@@ -12,8 +12,8 @@ var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var http_1 = require('@angular/http');
 // Add the RxJS Observable operators we need in this app.
-require('./rxjs-operators');
-var employees_service_1 = require('./services/employees.service');
+require('../../rxjs-operators');
+var employees_service_1 = require('../../services/employees.service');
 var EmployeeDetailComponent = (function () {
     function EmployeeDetailComponent(employeesService, routeParams) {
         this.employeesService = employeesService;
@@ -31,8 +31,8 @@ var EmployeeDetailComponent = (function () {
     EmployeeDetailComponent = __decorate([
         core_1.Component({
             //selector: 'employee-detail',
-            templateUrl: 'app/employee-detail.component.html',
-            styleUrls: ['app/employee-detail.component.css'],
+            templateUrl: 'app/components/employees/employee-detail.component.html',
+            styleUrls: ['app/components/employees/employee-detail.component.css'],
             providers: [
                 employees_service_1.EmployeesService, http_1.HTTP_PROVIDERS
             ]
