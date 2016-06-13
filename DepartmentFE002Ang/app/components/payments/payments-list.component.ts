@@ -36,38 +36,20 @@ export class PaymentsListComponent implements OnInit {
     getPayments() {
         this.paymentService.getPayments()
                         .subscribe(
-                        payments => this.payments = payments,
+                        payments => this.initPayments(payments),
                         error =>  this.errorMessage = <any>error);
-                        
-        //  this.sortedPayments = this.payments.sort((p1,p2) => {
-        //     if (p1.Date > p2.Date) {
-        //         return 1;
-        //     }
-
-        //     if (p1.Date < p2.Date) {
-        //         return -1;
-        //     }
-
-        //     return 0;
-        // });               
     }
     
-    // convertDate(oldDate: string) {
-    //   let newDate = new Date(oldDate);
-    //   //console.log(newDate);
-    //   return newDate;
-    // }
+    initPayments(payments) {
+        this.payments = payments;
+        this.paymentsCount = payments.length;
+    }
     
+    logMessage(value) {
+        console.log(value);
+    }
      
     ngOnInit() {
         this.getPayments();
     }
-    
-    // gotoEmployeeDetail(employee: Employee) {
-    //     this.router.navigate(['EmployeeDetail', { id: employee.Id }]);
-    // }
-    
-    // gotoPaymentCreate() {
-    //     this.router.navigate(['PaymentCreate'])
-    // }
 }

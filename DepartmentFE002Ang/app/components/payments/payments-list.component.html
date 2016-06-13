@@ -1,20 +1,31 @@
-<div class="panel-group" id="accordion">
+<!--<div class="panel-group" id="accordion">
   <div class="panel panel-default" *ngFor="let payment of payments; let idx = index">
       <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{idx}}" style="text-decoration: none">
     <div class="panel-heading">
-        <span class="badge">{{idx+1}}</span>
+        <span class="badge">{{paymentsCount - idx}}</span>
         <span>{{payment.Amount}}</span>
         <br />
         <span>{{helpersComponent.convertDate(payment.Date) | date:medium}}</span>
         <!--<img src="app/Img/DetailsIcon.png" alt="Details" width="16" height="16"
             class="pull-right"
             (click)="gotoEmployeeDetail(employee)" />-->
-    </div>
+    <!--</div>
     </a>
     <!--<div id="collapse{{idx}}" class="panel-collapse collapse">
       <div class="panel-body">
           Date of Birth: {{employee.DateOfBirth}}
       </div>
     </div>-->
+  <!--</div>
+</div>-->
+
+<div class="panel panel-default" *ngFor="let payment of payments; let idx = index">
+  <div class="panel-heading">
+      <span class="badge">{{paymentsCount - idx}}</span>
+      <span class="employee">{{payment.Employee.FirstName}} {{payment.Employee.LastName}}</span>
+  </div>
+  <div class="panel-body">
+      <span>Amount: {{payment.Amount}}</span>
+      <span class="pull-right">{{helpersComponent.convertDate(payment.Date) | date:medium}}</span>
   </div>
 </div>
