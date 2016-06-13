@@ -25,22 +25,15 @@ var PaymentsListComponent = (function () {
     PaymentsListComponent.prototype.getPayments = function () {
         var _this = this;
         this.paymentService.getPayments()
-            .subscribe(function (payments) { return _this.payments = payments; }, function (error) { return _this.errorMessage = error; });
-        //  this.sortedPayments = this.payments.sort((p1,p2) => {
-        //     if (p1.Date > p2.Date) {
-        //         return 1;
-        //     }
-        //     if (p1.Date < p2.Date) {
-        //         return -1;
-        //     }
-        //     return 0;
-        // });               
+            .subscribe(function (payments) { return _this.initPayments(payments); }, function (error) { return _this.errorMessage = error; });
     };
-    // convertDate(oldDate: string) {
-    //   let newDate = new Date(oldDate);
-    //   //console.log(newDate);
-    //   return newDate;
-    // }
+    PaymentsListComponent.prototype.initPayments = function (payments) {
+        this.payments = payments;
+        this.paymentsCount = payments.length;
+    };
+    PaymentsListComponent.prototype.logMessage = function (value) {
+        console.log(value);
+    };
     PaymentsListComponent.prototype.ngOnInit = function () {
         this.getPayments();
     };
