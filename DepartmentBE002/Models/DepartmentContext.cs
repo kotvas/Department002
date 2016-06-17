@@ -14,5 +14,7 @@ namespace DepartmentBE002.Models
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<EventType> EventTypes { get; set; }
+        public DbSet<EmployeeEvent> EmployeeEvents { get; set; }
     }
 }

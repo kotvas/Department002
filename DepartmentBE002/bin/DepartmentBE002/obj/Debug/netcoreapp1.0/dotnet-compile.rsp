@@ -207,7 +207,11 @@ C:\MyProjects\Department002\DepartmentBE002\Migrations\20160527211437_Department
 C:\MyProjects\Department002\DepartmentBE002\Migrations\20160527211437_Department002Migration002.Designer.cs
 C:\MyProjects\Department002\DepartmentBE002\Migrations\20160605133736_Department002Migration003.cs
 C:\MyProjects\Department002\DepartmentBE002\Migrations\20160605133736_Department002Migration003.Designer.cs
+C:\MyProjects\Department002\DepartmentBE002\Migrations\20160613143137_Department002Migration004.cs
+C:\MyProjects\Department002\DepartmentBE002\Migrations\20160613143137_Department002Migration004.Designer.cs
 C:\MyProjects\Department002\DepartmentBE002\Migrations\DepartmentContextModelSnapshot.cs
 C:\MyProjects\Department002\DepartmentBE002\Models\DepartmentContext.cs
 C:\MyProjects\Department002\DepartmentBE002\Models\Employee.cs
+C:\MyProjects\Department002\DepartmentBE002\Models\EmployeeEvent.cs
+C:\MyProjects\Department002\DepartmentBE002\Models\EventType.cs
 C:\MyProjects\Department002\DepartmentBE002\Models\Payment.cs

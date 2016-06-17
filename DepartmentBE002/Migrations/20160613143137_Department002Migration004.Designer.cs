@@ -8,9 +8,10 @@ using DepartmentBE002.Models;
 namespace DepartmentBE002.Migrations
 {
     [DbContext(typeof(DepartmentContext))]
-    partial class DepartmentContextModelSnapshot : ModelSnapshot
+    [Migration("20160613143137_Department002Migration004")]
+    partial class Department002Migration004
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rc2-20901")
