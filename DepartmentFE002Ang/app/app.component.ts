@@ -1,15 +1,31 @@
 import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
-import { EmployeesService } from './services/employees.service';
+//Admin section
+import { EventTypesComponent } from './components/adminComponents/eventTypes/event-types.component';
+import { EventTypeCreateComponent } from './components/adminComponents/eventTypes/event-type-create.component';
+
+//Employees section
 import { EmployeesComponent } from './components/employees/employees.component';
 import { EmployeeDetailComponent } from './components/employees/employee-detail.component';
 import { EmployeeCreateComponent } from './components/employees/employee-create.component';
 
+//Deposits section
+import { DepositsComponent } from './components/deposits/deposits.component';
+import { DepositCreateComponent } from './components/deposits/deposit-create.component';
 
-import { PaymentsService }     from './services/payments.service';
-import { PaymentsComponent } from './components/payments/payments.component';
-import { PaymentCreateComponent } from './components/payments/payment-create.component';
+//Department Events section
+import { DepartmentEventsComponent } from './components/departmentEvents/department-events.component';
+import { DepartmentEventCreateComponent } from './components/departmentEvents/department-event-create.component';
+
+
+//Expenses section
+import { ExpensesComponent } from './components/expenses/expenses.component';
+
+//Employees Accounts section
+
+import { EmployeesAccountsComponent } from './components/employeesAccounts/employees-accounts.component';
+
 
 @Component({
   selector: 'my-app',
@@ -17,12 +33,21 @@ import { PaymentCreateComponent } from './components/payments/payment-create.com
   styleUrls: ['app/app.component.css'],
   directives: [ROUTER_DIRECTIVES],
   providers: [
-    ROUTER_PROVIDERS,
-    EmployeesService
+    ROUTER_PROVIDERS
   ]
 })
 
 @RouteConfig([
+  {
+    path: '/admin/eventTypeCreate',
+    name: 'EventTypeCreate',
+    component: EventTypeCreateComponent
+  },
+  {
+    path: '/admin/eventTypes',
+    name: 'EventTypes',
+    component: EventTypesComponent
+  },
   {
     path: '/detail/:id',
     name: 'EmployeeDetail',
@@ -40,14 +65,34 @@ import { PaymentCreateComponent } from './components/payments/payment-create.com
     useAsDefault: true
   },
   {
-    path: '/PaymentCreate',
-    name: 'PaymentCreate',
-    component: PaymentCreateComponent
+    path: '/depositCreate',
+    name: 'DepositCreate',
+    component: DepositCreateComponent
   },
   {
-    path: '/payments',
-    name: 'Payments',
-    component: PaymentsComponent
+    path: '/deposits',
+    name: 'Deposits',
+    component: DepositsComponent
+  },
+  {
+    path: '/departmentEventCreate',
+    name: 'DepartmentEventCreate',
+    component: DepartmentEventCreateComponent
+  },
+  {
+    path: '/departmentEvents',
+    name: 'DepartmentEvents',
+    component: DepartmentEventsComponent
+  },
+  {
+    path: '/expenses',
+    name: 'Expenses',
+    component: ExpensesComponent
+  },
+  {
+    path: '/employeesAccounts',
+    name: 'EmployeesAccounts',
+    component: EmployeesAccountsComponent
   }
 ])
 

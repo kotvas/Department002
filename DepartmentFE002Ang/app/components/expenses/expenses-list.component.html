@@ -1,0 +1,37 @@
+<div class="panel-group">
+
+    <div class="panel panel-primary" *ngFor="let expense of expenses; let idx = index">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{idx}}" style="text-decoration: none">
+        <div class="panel-heading">
+            <span class="badge">{{expensesCount - idx}}</span>
+            <span>{{expense.Employee.FirstName}} {{expense.Employee.LastName}}</span>
+        </div>
+      </a>
+      <div id="collapse{{idx}}" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div>
+                Event Type: {{expense.DepartmentEvent.EventType.Title}}
+            </div>
+            <div>
+                Employee: {{expense.DepartmentEvent.Employee.FirstName}} {{expense.DepartmentEvent.Employee.LastName}}
+            </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+          <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4">
+                    <p>Current Bill:</p>
+                </div>
+                <div class="col-sm-4">
+                    <span>Amount: {{expense.Amount}}</span>
+                </div>
+                <div class="col-sm-4">
+                    <p class="pull-right">button here</p>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>

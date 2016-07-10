@@ -32,7 +32,9 @@ namespace DepartmentBE002.Controllers
         [HttpGet("{id}")]
         public Employee Get(String id)
         {
-            return _context.Employees.FirstOrDefault(e => e.Id == new Guid(id));
+            return _context.Employees
+                .OrderBy(e => e.LastName)
+                .FirstOrDefault(e => e.Id == new Guid(id));
         }
 
         // POST api/values

@@ -1,0 +1,20 @@
+<h1>{{title}}</h1>
+
+<div class="employee">
+    Employee:
+    <select (change)="onSelectEmployee($event.target.value)">
+      <option *ngFor="let employee of employees" [value]="employee.Id">{{employee.FirstName}} {{employee.LastName}}</option>
+    </select>
+</div>
+<div class="amount">
+    Amount: <input [(ngModel)]="deposit.Amount" placeholder="Amount">
+</div>
+<div class="date">
+    Date: <input type="date" [(ngModel)]="deposit.Date" placeholder="Date">
+</div>
+
+<button (click)="addDeposit(deposit);">
+  Add
+</button>
+
+<button (click)="goBack()">Cancel</button>

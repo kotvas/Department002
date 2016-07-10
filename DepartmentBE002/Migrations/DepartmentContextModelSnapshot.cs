@@ -16,59 +16,33 @@ namespace DepartmentBE002.Migrations
                 .HasAnnotation("ProductVersion", "1.0.0-rc2-20901")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DepartmentBE002.Models.Employee", b =>
+            modelBuilder.Entity("DepartmentBE002.Models.DepartmentEvent", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateOfBirth");
+                    b.Property<double>("AmountOfDepartment");
 
-                    b.Property<Guid?>("EmployeeEventId");
+                    b.Property<double>("AmountOfEmployee");
 
-                    b.Property<string>("FirstName");
+                    b.Property<DateTime>("DateCreated");
 
-                    b.Property<string>("LastName");
+                    b.Property<DateTime>("DateOfEvent");
 
-                    b.Property<string>("Phone");
+                    b.Property<Guid>("EmployeeId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeEventId");
-
-                    b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("DepartmentBE002.Models.EmployeeEvent", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid?>("ResponsibleEmployeeId");
-
-                    b.Property<Guid?>("TypeId");
+                    b.Property<Guid>("EventTypeId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ResponsibleEmployeeId");
+                    b.HasIndex("EmployeeId");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("EventTypeId");
 
-                    b.ToTable("EmployeeEvents");
+                    b.ToTable("DepartmentEvents");
                 });
 
-            modelBuilder.Entity("DepartmentBE002.Models.EventType", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EventTypes");
-                });
-
-            modelBuilder.Entity("DepartmentBE002.Models.Payment", b =>
+            modelBuilder.Entity("DepartmentBE002.Models.Deposit", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -83,33 +57,126 @@ namespace DepartmentBE002.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("Payments");
+                    b.ToTable("Deposits");
                 });
 
             modelBuilder.Entity("DepartmentBE002.Models.Employee", b =>
                 {
-                    b.HasOne("DepartmentBE002.Models.EmployeeEvent")
-                        .WithMany()
-                        .HasForeignKey("EmployeeEventId");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateOfBirth");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("Phone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("DepartmentBE002.Models.EmployeeEvent", b =>
+            modelBuilder.Entity("DepartmentBE002.Models.EmployeeAccount", b =>
                 {
-                    b.HasOne("DepartmentBE002.Models.Employee")
-                        .WithMany()
-                        .HasForeignKey("ResponsibleEmployeeId");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.HasOne("DepartmentBE002.Models.EventType")
-                        .WithMany()
-                        .HasForeignKey("TypeId");
+                    b.Property<decimal>("Amount");
+
+                    b.Property<DateTime>("DateOfLastUpdate");
+
+                    b.Property<Guid>("EmployeeId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("EmployeesAccounts");
                 });
 
-            modelBuilder.Entity("DepartmentBE002.Models.Payment", b =>
+            modelBuilder.Entity("DepartmentBE002.Models.EventType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<double>("AmountOfDepartment");
+
+                    b.Property<double>("AmountOfEmployee");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EventTypes");
+                });
+
+            modelBuilder.Entity("DepartmentBE002.Models.Expense", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<double>("Amount");
+
+                    b.Property<DateTime>("DateCreate");
+
+                    b.Property<DateTime?>("DateOfPayment");
+
+                    b.Property<Guid>("DepartmentEventId");
+
+                    b.Property<Guid?>("EmployeeId");
+
+                    b.Property<string>("Status");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartmentEventId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Expenses");
+                });
+
+            modelBuilder.Entity("DepartmentBE002.Models.DepartmentEvent", b =>
                 {
                     b.HasOne("DepartmentBE002.Models.Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DepartmentBE002.Models.EventType")
+                        .WithMany()
+                        .HasForeignKey("EventTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DepartmentBE002.Models.Deposit", b =>
+                {
+                    b.HasOne("DepartmentBE002.Models.Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DepartmentBE002.Models.EmployeeAccount", b =>
+                {
+                    b.HasOne("DepartmentBE002.Models.Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DepartmentBE002.Models.Expense", b =>
+                {
+                    b.HasOne("DepartmentBE002.Models.DepartmentEvent")
+                        .WithMany()
+                        .HasForeignKey("DepartmentEventId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DepartmentBE002.Models.Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId");
                 });
         }
     }

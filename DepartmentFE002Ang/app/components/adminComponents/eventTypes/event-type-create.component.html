@@ -1,0 +1,19 @@
+<h1>{{title}}</h1>
+
+<div class="eventTypeName">
+    Event Type Name:<input [(ngModel)]="eventType.Title" placeholder="EventTypeName">
+</div>
+
+<div class="amountOfEmployee">
+    Amount Of Employee:<input [(ngModel)]="eventType.AmountOfEmployee" placeholder="AmountOfEmployee">
+</div>
+
+<div class="amountOfDepartment">
+    Amount Of Department:<input [(ngModel)]="eventType.AmountOfDepartment" placeholder="AmountOfDepartment">
+</div>
+
+<button (click)="addEventType(eventType);">
+  Add
+</button>
+
+<button (click)="goBack()">Cancel</button>

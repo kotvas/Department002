@@ -1,0 +1,10 @@
+<div class="panel panel-default" *ngFor="let account of employeesAccounts; let idx = index">
+  <div class="panel-heading">
+      <span class="badge">{{employeesAccountsCount - idx}}</span>
+      <span class="employee">{{account.Employee.FirstName}} {{account.Employee.LastName}}</span>
+  </div>
+  <div class="panel-body">
+      <span>Amount: {{account.Amount}}</span>
+      <span class="pull-right">Last update: {{helpersComponent.convertDate(account.DateOfLastUpdate) | date:medium}}</span>
+  </div>
+</div>
