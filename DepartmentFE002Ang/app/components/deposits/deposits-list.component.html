@@ -1,0 +1,10 @@
+<div class="panel panel-default" *ngFor="let deposit of deposits; let idx = index">
+  <div class="panel-heading">
+      <span class="badge">{{depositsCount - idx}}</span>
+      <span class="employee">{{deposit.Employee.FirstName}} {{deposit.Employee.LastName}}</span>
+  </div>
+  <div class="panel-body">
+      <span>Amount: {{deposit.Amount}}</span>
+      <span class="pull-right">{{helpersComponent.convertDate(deposit.Date) | date:medium}}</span>
+  </div>
+</div>

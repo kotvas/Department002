@@ -12,10 +12,8 @@ var core_1 = require('@angular/core');
 var HelpersComponent = (function () {
     function HelpersComponent() {
     }
-    //title = 'Helper';
     HelpersComponent.prototype.convertDate = function (oldDate) {
         var newDate = new Date(oldDate);
-        //console.log(newDate);
         return newDate;
     };
     HelpersComponent = __decorate([

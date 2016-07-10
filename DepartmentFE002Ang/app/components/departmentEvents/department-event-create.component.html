@@ -1,0 +1,44 @@
+<h1>{{title}}</h1>
+
+<div class="eventType">
+    EventType:
+    <select (change)="onSelectEventType($event.target.value)">
+      <option *ngFor="let eType of eventTypes" [value]="eType.Id">{{eType.Title}}</option>
+    </select>
+</div>
+
+<br />
+
+<div class="amounts">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                Amount Of Employee:<input [(ngModel)]="departmentEvent.AmountOfEmployee" placeholder="AmountOfEmployee">
+            </div>
+            <div class="col-sm-6">
+                Amount Of Department:<input [(ngModel)]="departmentEvent.AmountOfDepartment" placeholder="AmountOfDepartment">
+            </div>
+        </div>
+      </div>
+</div>
+
+<br />
+
+<div class="employee">
+    Employee:
+    <select (change)="onSelectEmployee($event.target.value)">
+      <option *ngFor="let employee of employees" [value]="employee.Id">{{employee.FirstName}} {{employee.LastName}}</option>
+    </select>
+</div>
+<!--<div class="amount">
+    Amount: <input [(ngModel)]="deposit.Amount" placeholder="Amount">
+</div>-->
+<div class="date">
+    Date of Event: <input type="date" [(ngModel)]="departmentEvent.DateOfEvent" placeholder="Date">
+</div>
+
+<button (click)="addDepartmentEvent(departmentEvent);">
+  Add
+</button>
+
+<button (click)="goBack()">Cancel</button>

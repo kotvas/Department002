@@ -10,12 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
-var employees_service_1 = require('./services/employees.service');
+//Admin section
+var event_types_component_1 = require('./components/adminComponents/eventTypes/event-types.component');
+var event_type_create_component_1 = require('./components/adminComponents/eventTypes/event-type-create.component');
+//Employees section
 var employees_component_1 = require('./components/employees/employees.component');
 var employee_detail_component_1 = require('./components/employees/employee-detail.component');
 var employee_create_component_1 = require('./components/employees/employee-create.component');
-var payments_component_1 = require('./components/payments/payments.component');
-var payment_create_component_1 = require('./components/payments/payment-create.component');
+//Deposits section
+var deposits_component_1 = require('./components/deposits/deposits.component');
+var deposit_create_component_1 = require('./components/deposits/deposit-create.component');
+//Department Events section
+var department_events_component_1 = require('./components/departmentEvents/department-events.component');
+var department_event_create_component_1 = require('./components/departmentEvents/department-event-create.component');
+//Expenses section
+var expenses_component_1 = require('./components/expenses/expenses.component');
+//Employees Accounts section
+var employees_accounts_component_1 = require('./components/employeesAccounts/employees-accounts.component');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Department';
@@ -27,11 +38,20 @@ var AppComponent = (function () {
             styleUrls: ['app/app.component.css'],
             directives: [router_deprecated_1.ROUTER_DIRECTIVES],
             providers: [
-                router_deprecated_1.ROUTER_PROVIDERS,
-                employees_service_1.EmployeesService
+                router_deprecated_1.ROUTER_PROVIDERS
             ]
         }),
         router_deprecated_1.RouteConfig([
+            {
+                path: '/admin/eventTypeCreate',
+                name: 'EventTypeCreate',
+                component: event_type_create_component_1.EventTypeCreateComponent
+            },
+            {
+                path: '/admin/eventTypes',
+                name: 'EventTypes',
+                component: event_types_component_1.EventTypesComponent
+            },
             {
                 path: '/detail/:id',
                 name: 'EmployeeDetail',
@@ -49,14 +69,34 @@ var AppComponent = (function () {
                 useAsDefault: true
             },
             {
-                path: '/PaymentCreate',
-                name: 'PaymentCreate',
-                component: payment_create_component_1.PaymentCreateComponent
+                path: '/depositCreate',
+                name: 'DepositCreate',
+                component: deposit_create_component_1.DepositCreateComponent
             },
             {
-                path: '/payments',
-                name: 'Payments',
-                component: payments_component_1.PaymentsComponent
+                path: '/deposits',
+                name: 'Deposits',
+                component: deposits_component_1.DepositsComponent
+            },
+            {
+                path: '/departmentEventCreate',
+                name: 'DepartmentEventCreate',
+                component: department_event_create_component_1.DepartmentEventCreateComponent
+            },
+            {
+                path: '/departmentEvents',
+                name: 'DepartmentEvents',
+                component: department_events_component_1.DepartmentEventsComponent
+            },
+            {
+                path: '/expenses',
+                name: 'Expenses',
+                component: expenses_component_1.ExpensesComponent
+            },
+            {
+                path: '/employeesAccounts',
+                name: 'EmployeesAccounts',
+                component: employees_accounts_component_1.EmployeesAccountsComponent
             }
         ]), 
         __metadata('design:paramtypes', [])

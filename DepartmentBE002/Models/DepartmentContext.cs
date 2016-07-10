@@ -12,9 +12,13 @@ namespace DepartmentBE002.Models
             : base(options)
         { }
 
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Payment> Payments { get; set; }
         public DbSet<EventType> EventTypes { get; set; }
-        public DbSet<EmployeeEvent> EmployeeEvents { get; set; }
+
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<EmployeeAccount> EmployeesAccounts { get; set; }
+
+        public DbSet<Deposit> Deposits { get; set; }
+        public DbSet<DepartmentEvent> DepartmentEvents { get; set; }
+        public DbSet<Expense> Expenses { get; set; }
     }
 }

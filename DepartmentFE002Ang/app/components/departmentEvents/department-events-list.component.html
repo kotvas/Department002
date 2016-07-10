@@ -1,0 +1,27 @@
+<div class="panel panel-default" *ngFor="let departmentEvent of departmentEvents; let idx = index">
+  <div class="panel-heading">
+      <span class="badge">{{departmentEventsCount - idx}}</span>
+      <span class="employee">{{departmentEvent.Employee.FirstName}} {{departmentEvent.Employee.LastName}}</span>
+      <button class="pull-right" (click)="generateExpenses(departmentEvent.Id)">
+        Generate Expenses
+      </button>
+  </div>
+  <div class="panel-body">
+      <div>
+        <span>Event Type: {{departmentEvent.EventType.Title}}</span>
+      </div>
+      <div>
+        <span>Date Of Event: {{helpersComponent.convertDate(departmentEvent.DateOfEvent) | date:medium}}</span>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <span>Amount Of Employee: {{departmentEvent.AmountOfEmployee}}</span>
+            </div>
+            <div class="col-sm-6">
+                <span>Amount Of Department: {{departmentEvent.AmountOfDepartment}}</span>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>

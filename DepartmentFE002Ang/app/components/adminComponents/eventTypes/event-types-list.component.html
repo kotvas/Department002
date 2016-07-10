@@ -1,0 +1,18 @@
+<div class="panel panel-primary"*ngFor="let eType of eventTypes; let idx = index" >
+  <div class="panel-body">
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <span class="badge">{{idx + 1}}</span>
+                <span class="employee">{{eType.Title}}</span>
+            </div>
+            <div class="col-sm-4">
+                <span>Amount Of Employee: {{eType.AmountOfEmployee}}</span>
+            </div>
+            <div class="col-sm-4">
+                <span>Amount Of Department: {{eType.AmountOfDepartment}}</span>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>

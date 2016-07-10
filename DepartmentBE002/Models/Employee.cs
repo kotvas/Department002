@@ -12,7 +12,5 @@ namespace DepartmentBE002.Models
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Phone { get; set; }
-
-        List<Payment> Payments { get; set; }
     }
 }
