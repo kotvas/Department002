@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
-//import { Router } from '@angular/router-deprecated';
 
 // Add the RxJS Observable operators we need in this app.
 import '../../../rxjs-operators';
@@ -28,20 +27,22 @@ export class EventTypesListComponent implements OnInit {
     
     getEventTypes() {
         this.adminService.getEventTypes()
-                        .subscribe(
+                    .subscribe(
                         eventTypes => this.initEventTypes(eventTypes),
                         error =>  this.errorMessage = <any>error);
     }
     
     initEventTypes(eventTypes) {
         this.eventTypes = eventTypes;
-    }
-    
-    logMessage(value) {
-        console.log(value);
+        console.log("collection: " + eventTypes.length);
     }
      
     ngOnInit() {
         this.getEventTypes();
+    }
+    
+    deleteEventType(value) {
+        this.adminService.disableEventType(value)
+           .subscribe((res) => { this.getEventTypes();} );
     }
 }

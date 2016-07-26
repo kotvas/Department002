@@ -26,15 +26,17 @@ var DepartmentEventCreateComponent = (function () {
         this.employeesService = employeesService;
         this.routeParams = routeParams;
         this.title = 'Add New Event';
+        //departmentEvents: DepartmentEvent[];
         this.departmentEvent = new department_event_1.DepartmentEvent();
         this.selectedEmployee = new employee_1.Employee();
         this.selectedEventType = new eventType_1.EventType();
     }
-    DepartmentEventCreateComponent.prototype.getDepartmentEvents = function () {
-        var _this = this;
-        this.departmentEventsService.getDepartmentEvents()
-            .subscribe(function (departmentEvents) { return _this.departmentEvents = departmentEvents; }, function (error) { return _this.errorMessage = error; });
-    };
+    // getDepartmentEvents() {
+    //     this.departmentEventsService.getDepartmentEvents()
+    //                     .subscribe(
+    //                     departmentEvents => this.departmentEvents = departmentEvents,
+    //                     error =>  this.errorMessage = <any>error);
+    // }
     DepartmentEventCreateComponent.prototype.populateEmployees = function (employees) {
         console.log("populateEmployees");
         this.employees = employees;
@@ -47,6 +49,7 @@ var DepartmentEventCreateComponent = (function () {
     };
     DepartmentEventCreateComponent.prototype.populateEventTypes = function (eventTypes) {
         this.eventTypes = eventTypes;
+        //this.departmentEvent.EventType = eventTypes[0];
         this.selectedEventType = eventTypes[0];
         this.departmentEvent.AmountOfEmployee = this.selectedEventType.AmountOfEmployee;
         this.departmentEvent.AmountOfDepartment = this.selectedEventType.AmountOfDepartment;
@@ -57,34 +60,34 @@ var DepartmentEventCreateComponent = (function () {
             .subscribe(function (eventTypes) { return _this.populateEventTypes(eventTypes); }, function (error) { return _this.errorMessage = error; });
     };
     DepartmentEventCreateComponent.prototype.ngOnInit = function () {
-        this.getDepartmentEvents();
+        //this.getDepartmentEvents();
         this.getEmployees();
         this.getEventTypes();
     };
     DepartmentEventCreateComponent.prototype.addDepartmentEvent = function (newDepartmentEvent) {
+        // console.log("addDepartmentEvent001");
         var _this = this;
-        console.log("addDepartmentEvent001");
-        console.log("newDepartmentEvent:");
-        console.log(newDepartmentEvent);
-        console.log("SelectedEmployee:");
-        console.log(this.selectedEmployee);
+        // console.log("newDepartmentEvent:");
+        // console.log(newDepartmentEvent);
+        // console.log("SelectedEmployee:");
+        // console.log(this.selectedEmployee);
         newDepartmentEvent.Employee = this.selectedEmployee;
         newDepartmentEvent.EmployeeId = this.selectedEmployee.Id;
-        console.log("addDepartmentEvent002");
+        //console.log("addDepartmentEvent002");
         newDepartmentEvent.EventType = this.selectedEventType;
         newDepartmentEvent.EventTypeId = this.selectedEventType.Id;
-        console.log("addDepartmentEvent003");
+        //console.log("addDepartmentEvent003");
         this.departmentEventsService.addDepartmentEvent(newDepartmentEvent)
-            .subscribe(function (newDepartmentEvent) { return _this.departmentEvents.push(newDepartmentEvent); }, function (error) { return _this.errorMessage = error; });
-        console.log("addDepartmentEvent004");
-        this.getDepartmentEvents();
-        window.history.back();
+            .subscribe(function () { return window.history.back(); }, function (error) { return _this.errorMessage = error; });
+        //console.log("addDepartmentEvent004");
+        //this.getDepartmentEvents();
         //location.reload();
     };
     DepartmentEventCreateComponent.prototype.goBack = function () {
         window.history.back();
     };
     DepartmentEventCreateComponent.prototype.onSelectEmployee = function (employeeId) {
+        console.log("onSelectEmployee");
         this.selectedEmployee = null;
         for (var i = 0; i < this.employees.length; i++) {
             //console.log(this.employees[i]);
@@ -97,6 +100,7 @@ var DepartmentEventCreateComponent = (function () {
         }
     };
     DepartmentEventCreateComponent.prototype.onSelectEventType = function (eventTypeId) {
+        console.log("onSelectEventType");
         this.selectedEventType = null;
         for (var i = 0; i < this.eventTypes.length; i++) {
             if (this.eventTypes[i].Id == eventTypeId) {

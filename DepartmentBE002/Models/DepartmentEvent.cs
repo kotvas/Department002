@@ -15,12 +15,12 @@ namespace DepartmentBE002.Models
         public Guid EmployeeId { get; set; }
         public Employee Employee { get; set; }
 
-
         public DateTime DateCreated { get; set; }
         public DateTime DateOfEvent { get; set; }
 
-
         public double AmountOfEmployee { get; set; }
         public double AmountOfDepartment { get; set; }
+
+        public bool AreExpensesGenerated { get; set; }
     }
 }

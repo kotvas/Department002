@@ -12,11 +12,13 @@ var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 //Admin section
 var event_types_component_1 = require('./components/adminComponents/eventTypes/event-types.component');
-var event_type_create_component_1 = require('./components/adminComponents/eventTypes/event-type-create.component');
+//import { EventTypeCreateComponent } from './components/adminComponents/eventTypes/event-type-create.component';
+var event_type_create_form_component_1 = require('./components/adminComponents/eventTypes/event-type-create-form.component');
 //Employees section
 var employees_component_1 = require('./components/employees/employees.component');
-var employee_detail_component_1 = require('./components/employees/employee-detail.component');
-var employee_create_component_1 = require('./components/employees/employee-create.component');
+// import { EmployeeDetailComponent } from './components/employees/employee-detail.component';
+// import { EmployeeCreateComponent } from './components/employees/employee-create.component';
+var employee_form_component_1 = require('./components/employees/employee-form.component');
 //Deposits section
 var deposits_component_1 = require('./components/deposits/deposits.component');
 var deposit_create_component_1 = require('./components/deposits/deposit-create.component');
@@ -45,22 +47,32 @@ var AppComponent = (function () {
             {
                 path: '/admin/eventTypeCreate',
                 name: 'EventTypeCreate',
-                component: event_type_create_component_1.EventTypeCreateComponent
+                component: event_type_create_form_component_1.EventTypeCreateFormComponent
             },
             {
                 path: '/admin/eventTypes',
                 name: 'EventTypes',
                 component: event_types_component_1.EventTypesComponent
             },
+            // {
+            //   path: '/detail/:id',
+            //   name: 'EmployeeDetail',
+            //   component: EmployeeDetailComponent
+            // },
+            // {
+            //   path: '/create',
+            //   name: 'EmployeeCreate',
+            //   component: EmployeeCreateComponent
+            // },
             {
-                path: '/detail/:id',
-                name: 'EmployeeDetail',
-                component: employee_detail_component_1.EmployeeDetailComponent
+                path: '/employees/:form/:id',
+                name: 'EmployeeForm',
+                component: employee_form_component_1.EmployeeFormComponent
             },
             {
-                path: '/create',
-                name: 'EmployeeCreate',
-                component: employee_create_component_1.EmployeeCreateComponent
+                path: '/employees/:form',
+                name: 'EmployeeForm',
+                component: employee_form_component_1.EmployeeFormComponent
             },
             {
                 path: '/employees',

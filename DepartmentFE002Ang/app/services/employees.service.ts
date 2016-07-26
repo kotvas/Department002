@@ -18,7 +18,6 @@ export class EmployeesService {
   }
   
   getEmployee (id: string): Observable<Employee> {
-    console.log("employee id: " + id)
     return this.http.get(this.employeesUrl + "/" + id)
                     .map(this.extractData)
                     .catch(this.handleError);
@@ -26,29 +25,45 @@ export class EmployeesService {
   
   addEmployee (employee: Employee): Observable<Employee> {
     
-    console.log("Employee:" + employee);
-    
     let body = JSON.stringify( employee );
-    
-    console.log(body);
     
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-
-    console.log("before post");
 
     return this.http.post(this.employeesUrl, body, options)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
   
+  updateEmployee (employee: Employee): Observable<Employee> {
+    let updateURL = this.employeesUrl + "/" + employee.Id;
+    
+    let body = JSON.stringify( employee );
+    
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    
+    return this.http.put(updateURL, body, options)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+  
+  disableEmployee (employeeId: string)
+  {
+    let disableURL = this.employeesUrl + "/disable/" + employeeId;
+    console.log('disableEmployee');
+    console.log(disableURL);
+    return this.http.put(disableURL, "")
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+  
   private extractData(res: Response) {
+    let body;
     
-    console.log("before body");
-    
-    let body = res.json();
-    
-    console.log("after body");
+    if (res.text()) {
+        body = res.json();
+    }
     
     return body || { };
   }

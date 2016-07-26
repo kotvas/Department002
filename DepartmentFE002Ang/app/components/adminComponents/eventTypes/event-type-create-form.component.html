@@ -1,0 +1,42 @@
+<div class="container">
+    <h1>{{title}}</h1>
+    <form (ngSubmit)="onSubmit()" #eventTypeForm="ngForm">
+      <div class="form-group">
+        <label for="eventTypeTitle">Event Type Title:</label>
+        <input type="text" class="form-control" 
+            required minlength="4" pattern="^[A-Za-z].+$"
+            [(ngModel)]="eventType.Title"
+            name="eventTypeTitle"  #eventTypeTitle="ngModel" >
+        <div [hidden]="eventTypeTitle.valid || eventTypeTitle.pristine" class="alert alert-danger">
+            <p *ngIf="eventTypeTitle.errors?.required">Event Type Title is required</p>
+            <p *ngIf="eventTypeTitle.errors?.minlength">Min length should be at least 4 characters</p>
+            <p *ngIf="eventTypeTitle.errors?.pattern">Should start from letter</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="amountOfEmployee">Amount Of Employee:</label>
+        <input type="text" class="form-control" 
+            required pattern="^[0-9]+$"
+            [(ngModel)]="eventType.AmountOfEmployee"
+            name="amountOfEmployee" #amountOfEmployee="ngModel">
+        <div [hidden]="amountOfEmployee.valid || amountOfEmployee.pristine" class="alert alert-danger">
+            <p *ngIf="amountOfEmployee.errors?.required">Event Type Title is required</p>
+            <p *ngIf="amountOfEmployee.errors?.pattern">Should be number</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="amountOfDepartment">Amount Of Department:</label>
+        <input type="text" class="form-control" 
+            required pattern="^[0-9]+$"
+            [(ngModel)]="eventType.AmountOfDepartment"
+            name="amountOfDepartment" #amountOfDepartment="ngModel">
+        <div [hidden]="amountOfDepartment.valid || amountOfDepartment.pristine" class="alert alert-danger">
+            <p *ngIf="amountOfDepartment.errors?.required">Event Type Title is required</p>
+            <p *ngIf="amountOfDepartment.errors?.pattern">Should be number</p>
+        </div>
+      </div>
+      <!--{{myLog(eventTypeTitle)}}-->
+      <button type="submit" class="btn btn-default" [disabled]="!eventTypeForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-default" (click)="goBack()">Cancel</button>
+    </form>
+</div>

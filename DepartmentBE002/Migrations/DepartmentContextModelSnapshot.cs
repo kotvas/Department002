@@ -25,6 +25,8 @@ namespace DepartmentBE002.Migrations
 
                     b.Property<double>("AmountOfEmployee");
 
+                    b.Property<bool>("AreExpensesGenerated");
+
                     b.Property<DateTime>("DateCreated");
 
                     b.Property<DateTime>("DateOfEvent");
@@ -69,6 +71,8 @@ namespace DepartmentBE002.Migrations
 
                     b.Property<string>("FirstName");
 
+                    b.Property<bool>("IsActive");
+
                     b.Property<string>("LastName");
 
                     b.Property<string>("Phone");
@@ -104,6 +108,8 @@ namespace DepartmentBE002.Migrations
                     b.Property<double>("AmountOfDepartment");
 
                     b.Property<double>("AmountOfEmployee");
+
+                    b.Property<bool>("IsActive");
 
                     b.Property<string>("Title");
 

@@ -27,7 +27,7 @@ export class DepartmentEventCreateComponent implements OnInit {
     
     errorMessage: string;
     
-    departmentEvents: DepartmentEvent[];
+    //departmentEvents: DepartmentEvent[];
     departmentEvent = new DepartmentEvent();
     
     employees: Employee[];
@@ -43,12 +43,12 @@ export class DepartmentEventCreateComponent implements OnInit {
         private routeParams: RouteParams) {
     }
         
-    getDepartmentEvents() {
-        this.departmentEventsService.getDepartmentEvents()
-                        .subscribe(
-                        departmentEvents => this.departmentEvents = departmentEvents,
-                        error =>  this.errorMessage = <any>error);
-    }
+    // getDepartmentEvents() {
+    //     this.departmentEventsService.getDepartmentEvents()
+    //                     .subscribe(
+    //                     departmentEvents => this.departmentEvents = departmentEvents,
+    //                     error =>  this.errorMessage = <any>error);
+    // }
     
     populateEmployees(employees: Employee[]) {
         console.log("populateEmployees")
@@ -66,6 +66,7 @@ export class DepartmentEventCreateComponent implements OnInit {
     
     populateEventTypes(eventTypes: EventType[]) {
         this.eventTypes = eventTypes;
+        //this.departmentEvent.EventType = eventTypes[0];
         this.selectedEventType = eventTypes[0];
         this.departmentEvent.AmountOfEmployee = this.selectedEventType.AmountOfEmployee;
         this.departmentEvent.AmountOfDepartment = this.selectedEventType.AmountOfDepartment;
@@ -74,45 +75,45 @@ export class DepartmentEventCreateComponent implements OnInit {
     getEventTypes() {
         this.adminService.getEventTypes()
                         .subscribe(
-                        eventTypes => this.populateEventTypes(eventTypes),
-                        error =>  this.errorMessage = <any>error);
+                            eventTypes => this.populateEventTypes(eventTypes),
+                            error =>  this.errorMessage = <any>error);
     }
      
     ngOnInit() {
-        this.getDepartmentEvents();
+        //this.getDepartmentEvents();
         this.getEmployees();
         this.getEventTypes();
     }
     
     addDepartmentEvent (newDepartmentEvent: DepartmentEvent) {
-        console.log("addDepartmentEvent001");
+        // console.log("addDepartmentEvent001");
         
-        console.log("newDepartmentEvent:");
-        console.log(newDepartmentEvent);
+        // console.log("newDepartmentEvent:");
+        // console.log(newDepartmentEvent);
         
-        console.log("SelectedEmployee:");
-        console.log(this.selectedEmployee);
+        // console.log("SelectedEmployee:");
+        // console.log(this.selectedEmployee);
         
         newDepartmentEvent.Employee = this.selectedEmployee;
         newDepartmentEvent.EmployeeId = this.selectedEmployee.Id;
         
-        console.log("addDepartmentEvent002");
+        //console.log("addDepartmentEvent002");
         
         newDepartmentEvent.EventType = this.selectedEventType;
         newDepartmentEvent.EventTypeId = this.selectedEventType.Id;
         
-        console.log("addDepartmentEvent003");
+        //console.log("addDepartmentEvent003");
         
         this.departmentEventsService.addDepartmentEvent(newDepartmentEvent)
                         .subscribe(
-                            newDepartmentEvent  => this.departmentEvents.push(newDepartmentEvent),
+                            ()  => window.history.back(),
                             error =>  this.errorMessage = <any>error);
         
-        console.log("addDepartmentEvent004");
+        //console.log("addDepartmentEvent004");
         
-        this.getDepartmentEvents();
+        //this.getDepartmentEvents();
         
-        window.history.back();
+        
         //location.reload();
     }
     
@@ -121,6 +122,8 @@ export class DepartmentEventCreateComponent implements OnInit {
     }
     
     onSelectEmployee(employeeId) { 
+console.log("onSelectEmployee");
+
         this.selectedEmployee = null;
         for (var i = 0; i < this.employees.length; i++)
         {
@@ -135,6 +138,8 @@ export class DepartmentEventCreateComponent implements OnInit {
     }
     
     onSelectEventType(eventTypeId) { 
+        console.log("onSelectEventType");
+        
         this.selectedEventType = null;
         for (var i = 0; i < this.eventTypes.length; i++)
         {

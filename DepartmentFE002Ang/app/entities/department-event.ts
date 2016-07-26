@@ -15,4 +15,6 @@ export class DepartmentEvent {
   
   AmountOfEmployee: number;
   AmountOfDepartment: number;
+
+  AreExpensesGenerated: boolean;
 }

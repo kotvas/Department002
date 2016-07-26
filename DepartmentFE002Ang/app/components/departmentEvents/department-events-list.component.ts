@@ -8,14 +8,12 @@ import { DepartmentEvent } from '../../entities/department-event';
 import { DepartmentEventsService } from '../../services/department-events.service';
 import { ExpensesService } from '../../services/expenses.service';
 
-import { HelpersComponent} from '../../shared/helpers.component';
-
 @Component({
   selector: 'department-events-list',
   templateUrl: 'app/components/departmentEvents/department-events-list.component.html',
   styleUrls:  ['app/components/departmentEvents/department-events-list.component.css'],
   providers: [
-    DepartmentEventsService, ExpensesService, HTTP_PROVIDERS, HelpersComponent
+    DepartmentEventsService, ExpensesService, HTTP_PROVIDERS
   ]
 })
 
@@ -26,26 +24,20 @@ export class DepartmentEventsListComponent implements OnInit {
     departmentEventsCount: number;
     
     constructor(
-        //private router: Router,
         private departmentEventsService: DepartmentEventsService,
-        private expensesService: ExpensesService,
-        private helpersComponent: HelpersComponent) {   
+        private expensesService: ExpensesService) {   
     }
     
     getDepartmentEvents() {
         this.departmentEventsService.getDepartmentEvents()
                         .subscribe(
-                        departmentEvents => this.initDepartmentEvents(departmentEvents),
-                        error =>  this.errorMessage = <any>error);
+                            departmentEvents => this.initDepartmentEvents(departmentEvents),
+                            error =>  this.errorMessage = <any>error);
     }
     
     initDepartmentEvents(departmentEvents) {
         this.departmentEvents = departmentEvents;
         this.departmentEventsCount = departmentEvents.length;
-    }
-    
-    logMessage(value) {
-        console.log(value);
     }
      
     ngOnInit() {
@@ -53,12 +45,9 @@ export class DepartmentEventsListComponent implements OnInit {
     }
     
     generateExpenses(eventId: string) {
-        console.log("generateExpenses");
-        console.log("eventId: " + eventId)
-        
         this.expensesService.generateExpensesForEvent(eventId)
-            .subscribe();//(
-                //employee  => this.eventTypes.push(newEventType),
-                //error =>  this.errorMessage = <any>error);
+            .subscribe(
+                ()  => this.getDepartmentEvents(),
+                error =>  this.errorMessage = <any>error);
     }
 }

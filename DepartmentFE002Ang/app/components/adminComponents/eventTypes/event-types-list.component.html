@@ -6,11 +6,16 @@
                 <span class="badge">{{idx + 1}}</span>
                 <span class="employee">{{eType.Title}}</span>
             </div>
-            <div class="col-sm-4">
-                <span>Amount Of Employee: {{eType.AmountOfEmployee}}</span>
+            <div class="col-sm-3">
+                <span>Employee Amount: {{eType.AmountOfEmployee}}</span>
             </div>
-            <div class="col-sm-4">
-                <span>Amount Of Department: {{eType.AmountOfDepartment}}</span>
+            <div class="col-sm-3">
+                <span>Department Amount: {{eType.AmountOfDepartment}}</span>
+            </div>
+            <div class="col-sm-2">
+                <img src="app/Img/DeleteRed.png" alt="Delete" width="24" height="24"
+                    class="pull-right"
+                    (click)="deleteEventType(eType.Id)" />
             </div>
         </div>
       </div>

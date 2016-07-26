@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-var http_2 = require('@angular/http');
 var Observable_1 = require('rxjs/Observable');
 var ExpensesService = (function () {
     function ExpensesService(http) {
@@ -23,30 +22,16 @@ var ExpensesService = (function () {
             .catch(this.handleError);
     };
     ExpensesService.prototype.generateExpensesForEvent = function (eventId) {
-        console.log("generateExpensesForEvent");
-        var body = JSON.stringify("");
-        var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_2.RequestOptions({ headers: headers });
-        return this.http.post(this.expensesUrl + "/ForEvent/" + eventId, body, options)
+        var generateExpensesForEventUrl = this.expensesUrl + "/ForEvent/" + eventId;
+        return this.http.post(generateExpensesForEventUrl, "")
             .map(this.extractData)
             .catch(this.handleError);
     };
-    //   addPayment (payment: Payment): Observable<Payment> {
-    //     //console.log("Payment:" + payment);
-    //     let body = JSON.stringify( payment );
-    //     //console.log(body);
-    //     let headers = new Headers({ 'Content-Type': 'application/json' });
-    //     let options = new RequestOptions({ headers: headers });
-    //     //console.log("before post");
-    //     return this.http.post(this.paymentsUrl, body, options)
-    //                     .map(this.extractData)
-    //                     .catch(this.handleError);
-    //   }
     ExpensesService.prototype.extractData = function (res) {
-        console.log("before body");
-        console.log(res);
-        var body = res.json();
-        console.log("after body");
+        var body;
+        if (res.text()) {
+            body = res.json();
+        }
         return body || {};
     };
     ExpensesService.prototype.handleError = function (error) {

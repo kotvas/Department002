@@ -8,7 +8,6 @@ import '../../../rxjs-operators';
 import { EventTypesListComponent} from './event-types-list.component';
 
 @Component({
-  //selector: 'my-app',
   templateUrl: 'app/components/adminComponents/eventTypes/event-types.component.html',
   styleUrls:  ['app/components/adminComponents/eventTypes/event-types.component.css'],
   providers: [

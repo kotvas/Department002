@@ -23,20 +23,29 @@ var AdminService = (function () {
             .catch(this.handleError);
     };
     AdminService.prototype.addEventType = function (eventType) {
-        console.log("EventType:" + eventType);
         var body = JSON.stringify(eventType);
-        console.log(body);
         var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
         var options = new http_2.RequestOptions({ headers: headers });
-        console.log("before post");
         return this.http.post(this.eventTypesUrl, body, options)
             .map(this.extractData)
             .catch(this.handleError);
     };
+    AdminService.prototype.disableEventType = function (eventTypeId) {
+        var disableURL = this.eventTypesUrl + "/disable/" + eventTypeId;
+        return this.http.put(disableURL, "")
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    AdminService.prototype.deleteEventType = function (eventTypeId) {
+        return this.http.delete(this.eventTypesUrl + "/" + eventTypeId);
+        //.map(this.extractData)
+        //.catch(this.handleError);
+    };
     AdminService.prototype.extractData = function (res) {
-        console.log("before body");
-        var body = res.json();
-        console.log("after body");
+        var body;
+        if (res.text()) {
+            body = res.json();
+        }
         return body || {};
     };
     AdminService.prototype.handleError = function (error) {

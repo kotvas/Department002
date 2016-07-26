@@ -23,26 +23,40 @@ var EmployeesService = (function () {
             .catch(this.handleError);
     };
     EmployeesService.prototype.getEmployee = function (id) {
-        console.log("employee id: " + id);
         return this.http.get(this.employeesUrl + "/" + id)
             .map(this.extractData)
             .catch(this.handleError);
     };
     EmployeesService.prototype.addEmployee = function (employee) {
-        console.log("Employee:" + employee);
         var body = JSON.stringify(employee);
-        console.log(body);
         var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
         var options = new http_2.RequestOptions({ headers: headers });
-        console.log("before post");
         return this.http.post(this.employeesUrl, body, options)
             .map(this.extractData)
             .catch(this.handleError);
     };
+    EmployeesService.prototype.updateEmployee = function (employee) {
+        var updateURL = this.employeesUrl + "/" + employee.Id;
+        var body = JSON.stringify(employee);
+        var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_2.RequestOptions({ headers: headers });
+        return this.http.put(updateURL, body, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    EmployeesService.prototype.disableEmployee = function (employeeId) {
+        var disableURL = this.employeesUrl + "/disable/" + employeeId;
+        console.log('disableEmployee');
+        console.log(disableURL);
+        return this.http.put(disableURL, "")
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
     EmployeesService.prototype.extractData = function (res) {
-        console.log("before body");
-        var body = res.json();
-        console.log("after body");
+        var body;
+        if (res.text()) {
+            body = res.json();
+        }
         return body || {};
     };
     EmployeesService.prototype.handleError = function (error) {

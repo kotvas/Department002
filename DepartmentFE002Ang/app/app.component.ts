@@ -3,12 +3,14 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/route
 
 //Admin section
 import { EventTypesComponent } from './components/adminComponents/eventTypes/event-types.component';
-import { EventTypeCreateComponent } from './components/adminComponents/eventTypes/event-type-create.component';
+//import { EventTypeCreateComponent } from './components/adminComponents/eventTypes/event-type-create.component';
+import { EventTypeCreateFormComponent } from './components/adminComponents/eventTypes/event-type-create-form.component';
 
 //Employees section
 import { EmployeesComponent } from './components/employees/employees.component';
-import { EmployeeDetailComponent } from './components/employees/employee-detail.component';
-import { EmployeeCreateComponent } from './components/employees/employee-create.component';
+// import { EmployeeDetailComponent } from './components/employees/employee-detail.component';
+// import { EmployeeCreateComponent } from './components/employees/employee-create.component';
+import { EmployeeFormComponent } from './components/employees/employee-form.component';
 
 //Deposits section
 import { DepositsComponent } from './components/deposits/deposits.component';
@@ -41,22 +43,32 @@ import { EmployeesAccountsComponent } from './components/employeesAccounts/emplo
   {
     path: '/admin/eventTypeCreate',
     name: 'EventTypeCreate',
-    component: EventTypeCreateComponent
+    component: EventTypeCreateFormComponent
   },
   {
     path: '/admin/eventTypes',
     name: 'EventTypes',
     component: EventTypesComponent
   },
+  // {
+  //   path: '/detail/:id',
+  //   name: 'EmployeeDetail',
+  //   component: EmployeeDetailComponent
+  // },
+  // {
+  //   path: '/create',
+  //   name: 'EmployeeCreate',
+  //   component: EmployeeCreateComponent
+  // },
   {
-    path: '/detail/:id',
-    name: 'EmployeeDetail',
-    component: EmployeeDetailComponent
+    path: '/employees/:form/:id',
+    name: 'EmployeeForm',
+    component: EmployeeFormComponent
   },
   {
-    path: '/create',
-    name: 'EmployeeCreate',
-    component: EmployeeCreateComponent
+    path: '/employees/:form',
+    name: 'EmployeeForm',
+    component: EmployeeFormComponent
   },
   {
     path: '/employees',

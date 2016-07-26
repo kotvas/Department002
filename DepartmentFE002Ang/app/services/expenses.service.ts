@@ -19,44 +19,19 @@ export class ExpensesService {
   
   generateExpensesForEvent(eventId: string)
   {
-    console.log("generateExpensesForEvent");
-    
-    let body = JSON.stringify("");
-    
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    let generateExpensesForEventUrl = this.expensesUrl + "/ForEvent/" + eventId;
 
-    return this.http.post(this.expensesUrl + "/ForEvent/" + eventId, body, options)
+    return this.http.post(generateExpensesForEventUrl, "")
                 .map(this.extractData)
                 .catch(this.handleError);
   }
   
-//   addPayment (payment: Payment): Observable<Payment> {
-    
-//     //console.log("Payment:" + payment);
-    
-//     let body = JSON.stringify( payment );
-    
-//     //console.log(body);
-    
-//     let headers = new Headers({ 'Content-Type': 'application/json' });
-//     let options = new RequestOptions({ headers: headers });
-
-//     //console.log("before post");
-
-//     return this.http.post(this.paymentsUrl, body, options)
-//                     .map(this.extractData)
-//                     .catch(this.handleError);
-//   }
-  
   private extractData(res: Response) {
+    let body;
     
-    console.log("before body");
-    console.log(res);
-    
-    let body = res.json();
-    
-    console.log("after body");
+    if (res.text()) {
+        body = res.json();
+    }
     
     return body || { };
   }

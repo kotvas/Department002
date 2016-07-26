@@ -1,0 +1,31 @@
+<div>
+  Search: <input type="text" [(ngModel)]="searchValue" placeholder="Search value">
+</div>
+
+<div>
+  Sort: 
+</div>
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default" *ngFor="let employee of (employees | getFilteredEmployees: searchValue); let idx = index">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{idx}}" style="text-decoration: none">
+    <div class="panel-heading">
+        <span class="badge">{{idx+1}}</span>
+        <span>{{employee.FirstName}} {{employee.LastName}} </span>
+        
+        <img src="app/Img/DetailsIcon.png" alt="Details" width="24" height="24"
+            class="pull-right"
+            (click)="viewEmployee(employee)" />
+        
+        <img src="app/Img/DeleteRed.png" alt="Delete" width="24" height="24"
+            class="pull-right"
+            (click)="deleteEmployee(employee.Id)" />
+    </div>
+    </a>
+    <div id="collapse{{idx}}" class="panel-collapse collapse">
+      <div class="panel-body">
+          Date of Birth: {{employee.DateOfBirth | date: medium}}
+      </div>
+    </div>
+  </div>
+</div>
