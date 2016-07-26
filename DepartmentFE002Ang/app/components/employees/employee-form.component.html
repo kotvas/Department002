@@ -1,0 +1,88 @@
+<div class="container">
+    <h1>{{formTitle}}</h1>
+    <div [hidden]="!editMode">
+        <form (ngSubmit)="onSubmit()" #employeeForm="ngForm">
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="firstName">First name</label>
+                    <input type="text" class="form-control" 
+                        required minlength="2" pattern="^[A-Z][a-z]+$"
+                        [(ngModel)]="employee.FirstName"
+                        name="firstName"  #firstName="ngModel" >
+                    <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+                        <p *ngIf="firstName.errors?.required">First name is required</p>
+                        <p *ngIf="firstName.errors?.minlength">First name should be at least 2 characters</p>
+                        <p *ngIf="firstName.errors?.pattern">Should start from capital letter and contains letters</p>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="lastName">Last name</label>
+                    <input type="text" class="form-control" 
+                        required minlength="2" pattern="^[A-Z][a-z]+$"
+                        [(ngModel)]="employee.LastName"
+                        name="lastName"  #lastName="ngModel" >
+                    <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+                        <p *ngIf="lastName.errors?.required">Last name is required</p>
+                        <p *ngIf="lastName.errors?.minlength">Last name should be at least 2 characters</p>
+                        <p *ngIf="lastName.errors?.pattern">Should start from capital letter and contains letters</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <label for="dateOfBirth">Date Of Birth</label>
+                    <br/>
+                    <label for="currentDateOfBirth">Current value: {{employee?.DateOfBirth | date:medium}}</label>
+                    <input type="date" class="form-control"
+                        required
+                        [(ngModel)]="employee.DateOfBirth"
+                        name="dateOfBirth"  #dateOfBirth="ngModel">
+                    <div [hidden]="dateOfBirth.valid || dateOfBirth.pristine" class="alert alert-danger">
+                        <p *ngIf="dateOfBirth.errors?.required">Date Of Birth is required</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control"
+                        required
+                        [(ngModel)]="employee.Phone"
+                        name="phone"  #phone="ngModel" >
+                    <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
+                        <p *ngIf="phone.errors?.required">Phone is required</p>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default" [disabled]="!employeeForm.form.valid">Submit</button>
+            <button type="button" class="btn btn-default" (click)="goBack()">Cancel</button>
+        </form>
+    </div>
+    <div [hidden]="editMode">
+        <form>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="firstName">First name</label>
+                    <label for="firstNameValue">{{employee?.FirstName}}</label>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="lastName">Last name</label>
+                    <label for="lastNameValue">{{employee?.LastName}}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <label for="dateOfBirth">Date Of Birth</label>
+                    <label for="dateOfBirthValue">{{employee?.DateOfBirth | date:medium}}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <label for="phone">Phone</label>
+                    <label for="phoneValue">{{employee?.Phone}}</label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-default" (click)="goBack()">Cancel</button>
+        </form>
+    </div>
+</div>

@@ -12,5 +12,7 @@ namespace DepartmentBE002.Models
 
         public double AmountOfEmployee { get; set; }
         public double AmountOfDepartment { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

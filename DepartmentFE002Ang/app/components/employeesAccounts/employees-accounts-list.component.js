@@ -10,16 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var getSafeDate_pipe_1 = require('../../pipes/getSafeDate.pipe');
 // Add the RxJS Observable operators we need in this app.
 require('../../rxjs-operators');
 var employees_accounts_service_1 = require('../../services/employees-accounts.service');
-var helpers_component_1 = require('../../shared/helpers.component');
 var EmployeesAccountsListComponent = (function () {
-    function EmployeesAccountsListComponent(
-        //private router: Router,
-        employeesAccountsService, helpersComponent) {
+    function EmployeesAccountsListComponent(employeesAccountsService) {
         this.employeesAccountsService = employeesAccountsService;
-        this.helpersComponent = helpersComponent;
     }
     EmployeesAccountsListComponent.prototype.getEmployeesAccounts = function () {
         var _this = this;
@@ -39,10 +36,11 @@ var EmployeesAccountsListComponent = (function () {
             templateUrl: 'app/components/employeesAccounts/employees-accounts-list.component.html',
             styleUrls: ['app/components/employeesAccounts/employees-accounts-list.component.css'],
             providers: [
-                employees_accounts_service_1.EmployeesAccountsService, http_1.HTTP_PROVIDERS, helpers_component_1.HelpersComponent
-            ]
+                employees_accounts_service_1.EmployeesAccountsService, http_1.HTTP_PROVIDERS
+            ],
+            pipes: [getSafeDate_pipe_1.GetSafeDatePipe]
         }), 
-        __metadata('design:paramtypes', [employees_accounts_service_1.EmployeesAccountsService, helpers_component_1.HelpersComponent])
+        __metadata('design:paramtypes', [employees_accounts_service_1.EmployeesAccountsService])
     ], EmployeesAccountsListComponent);
     return EmployeesAccountsListComponent;
 }());

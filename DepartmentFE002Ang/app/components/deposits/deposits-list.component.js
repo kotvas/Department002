@@ -11,16 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 //import { Router } from '@angular/router-deprecated';
+var getSafeDate_pipe_1 = require('../../pipes/getSafeDate.pipe');
 // Add the RxJS Observable operators we need in this app.
 require('../../rxjs-operators');
 var deposits_service_1 = require('../../services/deposits.service');
-var helpers_component_1 = require('../../shared/helpers.component');
 var DepositsListComponent = (function () {
     function DepositsListComponent(
         //private router: Router,
-        depositsService, helpersComponent) {
+        depositsService) {
         this.depositsService = depositsService;
-        this.helpersComponent = helpersComponent;
     }
     DepositsListComponent.prototype.getDeposits = function () {
         var _this = this;
@@ -43,10 +42,11 @@ var DepositsListComponent = (function () {
             templateUrl: 'app/components/deposits/deposits-list.component.html',
             styleUrls: ['app/components/deposits/deposits-list.component.css'],
             providers: [
-                deposits_service_1.DepositsService, http_1.HTTP_PROVIDERS, helpers_component_1.HelpersComponent
-            ]
+                deposits_service_1.DepositsService, http_1.HTTP_PROVIDERS
+            ],
+            pipes: [getSafeDate_pipe_1.GetSafeDatePipe]
         }), 
-        __metadata('design:paramtypes', [deposits_service_1.DepositsService, helpers_component_1.HelpersComponent])
+        __metadata('design:paramtypes', [deposits_service_1.DepositsService])
     ], DepositsListComponent);
     return DepositsListComponent;
 }());

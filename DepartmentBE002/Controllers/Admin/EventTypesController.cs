@@ -20,51 +20,52 @@ namespace DepartmentBE002.Controllers.Admin
         {
             _context = context;
         }
-
-        // GET
+        
         [HttpGet]
         public IEnumerable<EventType> Get()
         {
-            return _context.EventTypes.OrderBy(eType => eType.Title).ToList();
+            var values = _context.EventTypes
+                .Where(eT => eT.IsActive)
+                .OrderBy(eType => eType.Title)
+                .ToList();
+            return values;
         }
 
         [HttpPost]
-        public void Post([FromBody]EventType value)
+        public IActionResult Post([FromBody]EventType value)
         {
+            value.IsActive = true;
+
             _context.EventTypes.Add(value);
             _context.SaveChanges();
+
+            return Ok();
         }
 
-        //// GET: api/values
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+        //PUT api/admin/eventtypes/disable/{id}
+        [HttpPut("disable/{id}")]
+        public IActionResult Put(string id)
+        {
+            var eventType = _context.EventTypes.FirstOrDefault(eT => eT.Id == new Guid(id));
 
-        //// GET api/values/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+            eventType.IsActive = false;
+            _context.SaveChanges();
 
-        //// POST api/values
-        //[HttpPost]
-        //public void Post([FromBody]string value)
-        //{
-        //}
+            return Ok();
+        }
 
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
+        //DELETE api/admin/eventtypes/{id}
+        [HttpDelete("{id}")]
+        public void Delete(string id)
+        {
+            var eventType = _context.EventTypes.FirstOrDefault(eT => eT.Id == new Guid(id));
 
-        //// DELETE api/values/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+            if (eventType!= null)
+            {
+                _context.EventTypes.Remove(eventType);
+                _context.SaveChanges();
+            }
+        }
+
     }
 }

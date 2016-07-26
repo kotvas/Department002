@@ -21,42 +21,64 @@ namespace DepartmentBE002.Controllers
             _context = context;
         }
 
-        // GET: api/values
+        // GET: api/employees
         [HttpGet]
         public IEnumerable<Employee> Get()
         {
-            return _context.Employees.ToList();
+            return _context.Employees
+                .Where(e => e.IsActive)
+                .ToList();
         }
 
-        // GET api/values/5
+        // GET api/employees/{id}
         [HttpGet("{id}")]
         public Employee Get(String id)
         {
-            return _context.Employees
+            var employee = _context.Employees
+                .Where(e => e.IsActive)
                 .OrderBy(e => e.LastName)
                 .FirstOrDefault(e => e.Id == new Guid(id));
+            return employee;
         }
 
-        // POST api/values
+        // POST api/employees
         [HttpPost]
         public ActionResult Post([FromBody]Employee value)
         {
+            value.IsActive = true;
+
             _context.Employees.Add(value);
             _context.SaveChanges();
 
             return Ok();
         }
 
-        // PUT api/values/5
+        // PUT api/employees/{id}
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(string id, [FromBody]Employee value)
         {
+            var employee = _context.Employees.FirstOrDefault(e => e.Id == new Guid(id));
+
+            employee.FirstName = value.FirstName;
+            employee.LastName = value.LastName;
+            employee.DateOfBirth = value.DateOfBirth;
+            employee.Phone = value.Phone;
+
+            _context.SaveChanges();
+
+            return Ok();
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        //PUT api/employees/disable/{id}
+        [HttpPut("disable/{id}")]
+        public IActionResult Put(string id)
         {
+            var employee = _context.Employees.FirstOrDefault(e => e.Id == new Guid(id));
+
+            employee.IsActive = false;
+            _context.SaveChanges();
+
+            return Ok();
         }
     }
 }

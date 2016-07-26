@@ -26,7 +26,6 @@ var EventTypesComponent = (function () {
     };
     EventTypesComponent = __decorate([
         core_1.Component({
-            //selector: 'my-app',
             templateUrl: 'app/components/adminComponents/eventTypes/event-types.component.html',
             styleUrls: ['app/components/adminComponents/eventTypes/event-types.component.css'],
             providers: [

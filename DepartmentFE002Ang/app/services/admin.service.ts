@@ -18,27 +18,39 @@ export class AdminService {
   }
   
   addEventType (eventType: EventType): Observable<EventType> {
-    console.log("EventType:" + eventType);
-    
     let body = JSON.stringify( eventType );
-    
-    console.log(body);
     
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-
-    console.log("before post");
 
     return this.http.post(this.eventTypesUrl, body, options)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
   
+  disableEventType (eventTypeId: string)
+  {
+    let disableURL = this.eventTypesUrl + "/disable/" + eventTypeId;
+    return this.http.put(disableURL, "")
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+  
+  deleteEventType (eventTypeId: string)
+  {
+    return this.http.delete(this.eventTypesUrl + "/" + eventTypeId);
+      //.map(this.extractData)
+      //.catch(this.handleError);
+  }
+  
   private extractData(res: Response) {
-      console.log("before body");
-      let body = res.json();
-      console.log("after body");
-      return body || { };
+    let body;
+    
+    if (res.text()) {
+        body = res.json();
+    }
+    
+    return body || { };
   }
   
   private handleError (error: any) {

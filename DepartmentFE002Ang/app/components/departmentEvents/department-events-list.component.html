@@ -2,7 +2,8 @@
   <div class="panel-heading">
       <span class="badge">{{departmentEventsCount - idx}}</span>
       <span class="employee">{{departmentEvent.Employee.FirstName}} {{departmentEvent.Employee.LastName}}</span>
-      <button class="pull-right" (click)="generateExpenses(departmentEvent.Id)">
+      <span>{{departmentEvent.AreExpensesGenerated}}</span>
+      <button [hidden]="departmentEvent.AreExpensesGenerated" class="pull-right" (click)="generateExpenses(departmentEvent.Id)">
         Generate Expenses
       </button>
   </div>
@@ -11,7 +12,7 @@
         <span>Event Type: {{departmentEvent.EventType.Title}}</span>
       </div>
       <div>
-        <span>Date Of Event: {{helpersComponent.convertDate(departmentEvent.DateOfEvent) | date:medium}}</span>
+        <span>Date Of Event: {{departmentEvent.DateOfEvent | date:medium}}</span>
       </div>
       <div class="container-fluid">
         <div class="row">

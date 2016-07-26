@@ -14,14 +14,10 @@ var http_1 = require('@angular/http');
 require('../../rxjs-operators');
 var department_events_service_1 = require('../../services/department-events.service');
 var expenses_service_1 = require('../../services/expenses.service');
-var helpers_component_1 = require('../../shared/helpers.component');
 var DepartmentEventsListComponent = (function () {
-    function DepartmentEventsListComponent(
-        //private router: Router,
-        departmentEventsService, expensesService, helpersComponent) {
+    function DepartmentEventsListComponent(departmentEventsService, expensesService) {
         this.departmentEventsService = departmentEventsService;
         this.expensesService = expensesService;
-        this.helpersComponent = helpersComponent;
     }
     DepartmentEventsListComponent.prototype.getDepartmentEvents = function () {
         var _this = this;
@@ -32,19 +28,13 @@ var DepartmentEventsListComponent = (function () {
         this.departmentEvents = departmentEvents;
         this.departmentEventsCount = departmentEvents.length;
     };
-    DepartmentEventsListComponent.prototype.logMessage = function (value) {
-        console.log(value);
-    };
     DepartmentEventsListComponent.prototype.ngOnInit = function () {
         this.getDepartmentEvents();
     };
     DepartmentEventsListComponent.prototype.generateExpenses = function (eventId) {
-        console.log("generateExpenses");
-        console.log("eventId: " + eventId);
+        var _this = this;
         this.expensesService.generateExpensesForEvent(eventId)
-            .subscribe(); //(
-        //employee  => this.eventTypes.push(newEventType),
-        //error =>  this.errorMessage = <any>error);
+            .subscribe(function () { return _this.getDepartmentEvents(); }, function (error) { return _this.errorMessage = error; });
     };
     DepartmentEventsListComponent = __decorate([
         core_1.Component({
@@ -52,10 +42,10 @@ var DepartmentEventsListComponent = (function () {
             templateUrl: 'app/components/departmentEvents/department-events-list.component.html',
             styleUrls: ['app/components/departmentEvents/department-events-list.component.css'],
             providers: [
-                department_events_service_1.DepartmentEventsService, expenses_service_1.ExpensesService, http_1.HTTP_PROVIDERS, helpers_component_1.HelpersComponent
+                department_events_service_1.DepartmentEventsService, expenses_service_1.ExpensesService, http_1.HTTP_PROVIDERS
             ]
         }), 
-        __metadata('design:paramtypes', [department_events_service_1.DepartmentEventsService, expenses_service_1.ExpensesService, helpers_component_1.HelpersComponent])
+        __metadata('design:paramtypes', [department_events_service_1.DepartmentEventsService, expenses_service_1.ExpensesService])
     ], DepartmentEventsListComponent);
     return DepartmentEventsListComponent;
 }());

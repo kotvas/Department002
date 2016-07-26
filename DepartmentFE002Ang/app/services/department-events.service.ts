@@ -18,17 +18,10 @@ export class DepartmentEventsService {
   }
   
   addDepartmentEvent (departmentEvent: DepartmentEvent): Observable<DepartmentEvent> {
-    
-    //console.log("Event:" + event);
-    
     let body = JSON.stringify( departmentEvent );
-    
-    //console.log(body);
     
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-
-    //console.log("before post");
 
     return this.http.post(this.departmentEventsUrl, body, options)
                     .map(this.extractData)
@@ -36,12 +29,11 @@ export class DepartmentEventsService {
   }
   
   private extractData(res: Response) {
+    let body;
     
-    console.log("before body");
-    
-    let body = res.json();
-    
-    console.log("after body");
+    if (res.text()) {
+        body = res.json();
+    }
     
     return body || { };
   }

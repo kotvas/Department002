@@ -1,55 +1,12 @@
 <h1>{{title}}</h1>
 
+<br />
+
 <button (click)="gotoEmployeeCreate()">
   Add New Employee
 </button>
 
 <br />
-  
-<!--<ul class="employees">
-    <li *ngFor="let employee of employees; let idx = index"
-        (click)="gotoEmployeeDetail(employee)">
-        <div class="number">{{idx}}</div>
-        
-        <div class="names">{{employee.FirstName}} {{employee.LastName}}</div>
-        <div class="birthday">{{employee.DateOfBirth}}</div><!-- | date:"MM/dd/yyyy"}}</div>-->
-    <!--</li>
-</ul>-->
+<br />
 
-<!--<div class="panel-group" id="accordion">
-  <div class="panel panel-default" *ngFor="let employee of employees; let idx = index">
-    <div class="panel-heading">
-        <span class="badge">{{idx+1}}</span>
-        <span><h4 class="panel-title">          
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{idx}}">
-                {{employee.FirstName}} {{employee.LastName}}
-            </a>
-        </h4></span>
-        <img src="app/Img/DetailsIcon.png" alt="Details" width="16" height="16">
-    </div>
-    <div id="collapse{{idx}}" class="panel-collapse collapse">
-      <div class="panel-body">
-          Date of Birth: {{employee.DateOfBirth}}
-      </div>
-    </div>
-  </div>
-</div>-->
-
-<div class="panel-group" id="accordion">
-  <div class="panel panel-default" *ngFor="let employee of employees; let idx = index">
-      <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{idx}}" style="text-decoration: none">
-    <div class="panel-heading">
-        <span class="badge">{{idx+1}}</span>
-        <span>{{employee.FirstName}} {{employee.LastName}} </span>
-        <img src="app/Img/DetailsIcon.png" alt="Details" width="16" height="16"
-            class="pull-right"
-            (click)="gotoEmployeeDetail(employee)" />
-    </div>
-    </a>
-    <div id="collapse{{idx}}" class="panel-collapse collapse">
-      <div class="panel-body">
-          Date of Birth: {{helpersComponent.convertDate(employee.DateOfBirth) | date:medium}}
-      </div>
-    </div>
-  </div>
-</div>
+<employees-list></employees-list>

@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+// import { Component } from '@angular/core';
 
-@Component({
-})
+// @Component({
+// })
 
-export class HelpersComponent {
-  convertDate(oldDate: string) {
-        let newDate = new Date(oldDate);
-        return newDate;
-    }
-}
+// export class HelpersComponent {
+//   convertDate(oldDate: string) {
+//       //console.log(oldDate);
+//         let newDate = new Date(oldDate);
+//         //console.log(newDate);
+//         return newDate;
+//     }
+// }

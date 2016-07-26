@@ -9,43 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
 var router_deprecated_1 = require('@angular/router-deprecated');
 // Add the RxJS Observable operators we need in this app.
 require('../../rxjs-operators');
-var employees_service_1 = require('../../services/employees.service');
-var helpers_component_1 = require('../../shared/helpers.component');
+var employees_list_component_1 = require('./employees-list.component');
 var EmployeesComponent = (function () {
-    function EmployeesComponent(router, employeesService, helpersComponent) {
+    function EmployeesComponent(router) {
         this.router = router;
-        this.employeesService = employeesService;
-        this.helpersComponent = helpersComponent;
         this.title = 'List of Employees';
     }
-    EmployeesComponent.prototype.getEmployees = function () {
-        var _this = this;
-        this.employeesService.getEmployees()
-            .subscribe(function (employees) { return _this.employees = employees; }, function (error) { return _this.errorMessage = error; });
-    };
     EmployeesComponent.prototype.ngOnInit = function () {
-        this.getEmployees();
-    };
-    EmployeesComponent.prototype.gotoEmployeeDetail = function (employee) {
-        this.router.navigate(['EmployeeDetail', { id: employee.Id }]);
     };
     EmployeesComponent.prototype.gotoEmployeeCreate = function () {
-        this.router.navigate(['EmployeeCreate']);
+        this.router.navigate(['EmployeeForm', { form: 'new' }]);
     };
     EmployeesComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
             templateUrl: 'app/components/employees/employees.component.html',
             styleUrls: ['app/components/employees/employees.component.css'],
-            providers: [
-                employees_service_1.EmployeesService, http_1.HTTP_PROVIDERS, helpers_component_1.HelpersComponent
-            ]
+            directives: [employees_list_component_1.EmployeesListComponent]
         }), 
-        __metadata('design:paramtypes', [router_deprecated_1.Router, employees_service_1.EmployeesService, helpers_component_1.HelpersComponent])
+        __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], EmployeesComponent);
     return EmployeesComponent;
 }());

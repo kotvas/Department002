@@ -22,7 +22,7 @@ namespace DepartmentBE002.Controllers
             _context = context;
         }
 
-        // GET: api/Expenses
+        // GET: api/expenses
         [HttpGet]
         public IEnumerable<Expense> Get()
         {
@@ -35,13 +35,6 @@ namespace DepartmentBE002.Controllers
                 .ToList();
             return value;
         }
-
-        // GET api/values/5
-        //[HttpGet("{id}")]
-        //public Employee Get(String id)
-        //{
-        //    return _context.EmployeeEvents.FirstOrDefault(e => e.Id == new Guid(id));
-        //}
 
         // POST api/expenses
         [HttpPost]
@@ -80,6 +73,9 @@ namespace DepartmentBE002.Controllers
                         _context.SaveChanges();
                     });
 
+                    employeeEvent.AreExpensesGenerated = true;
+                    _context.SaveChanges();
+
                     dbContextTransaction.Commit();
                 }
                 catch
@@ -88,19 +84,7 @@ namespace DepartmentBE002.Controllers
                 }
             }
 
-            return Ok();// ("ID = " + id);
+            return Ok();
         }
-
-        // PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-        //// DELETE api/values/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

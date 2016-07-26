@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-//import { Router } from '@angular/router-deprecated';
 // Add the RxJS Observable operators we need in this app.
 require('../../../rxjs-operators');
 var admin_service_1 = require('../../../services/admin.service');
@@ -25,12 +24,15 @@ var EventTypesListComponent = (function () {
     };
     EventTypesListComponent.prototype.initEventTypes = function (eventTypes) {
         this.eventTypes = eventTypes;
-    };
-    EventTypesListComponent.prototype.logMessage = function (value) {
-        console.log(value);
+        console.log("collection: " + eventTypes.length);
     };
     EventTypesListComponent.prototype.ngOnInit = function () {
         this.getEventTypes();
+    };
+    EventTypesListComponent.prototype.deleteEventType = function (value) {
+        var _this = this;
+        this.adminService.disableEventType(value)
+            .subscribe(function (res) { _this.getEventTypes(); });
     };
     EventTypesListComponent = __decorate([
         core_1.Component({
